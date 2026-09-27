@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private UserService userService;
+    private final UserService userService;
 
 //    public AuthController(UserService userService) {
-//        this.userService = userService; if we are using required args constructors then we don't need this constructor because it automatically creates constructor for fields marked with final
+//        this.userService = userService; //if we are using required args constructors then we don't need this constructor because it automatically creates constructor for fields marked with final
 //    }
     @PostMapping("/register")
     public User register(@RequestBody User user){
