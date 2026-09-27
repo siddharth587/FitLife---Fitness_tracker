@@ -8,6 +8,7 @@ public class FitnessTrackerMonolithArchitectureApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FitnessTrackerMonolithArchitectureApplication.class, args);
+
 	}
 
 }

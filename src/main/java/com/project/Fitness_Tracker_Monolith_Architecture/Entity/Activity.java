@@ -2,8 +2,10 @@ package com.project.Fitness_Tracker_Monolith_Architecture.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.sql.ast.tree.expression.SqlTypedExpression;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
