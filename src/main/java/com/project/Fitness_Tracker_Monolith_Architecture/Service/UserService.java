@@ -22,21 +22,27 @@ public class UserService {
 //    }
 
     public UserResponse register(RegisterRequest request) {
-        User user = new User(
-                null,
-                request.getEmail(),
-                request.getPassword(),
-                request.getFirstName(),
-                request.getLastName(),
-                Instant.parse("2026-09-27T21:30:00Z")
-                        .atZone(ZoneOffset.UTC)
-                        .toLocalDateTime(),
-                Instant.parse("2026-09-27T21:30:00Z")
-                        .atZone(ZoneOffset.UTC)
-                        .toLocalDateTime(),
-                List.of(),
-                List.of()
-        );
+        User user = User.builder()
+                .email(request.getEmail())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .password(request.getPassword())
+                .build();
+//        User user = new User(
+//                null,
+//                request.getEmail(),
+//                request.getPassword(),
+//                request.getFirstName(),
+//                request.getLastName(),
+//                Instant.parse("2026-09-27T21:30:00Z")
+//                        .atZone(ZoneOffset.UTC)
+//                        .toLocalDateTime(),
+//                Instant.parse("2026-09-27T21:30:00Z")
+//                        .atZone(ZoneOffset.UTC)
+//                        .toLocalDateTime(),
+//                List.of(),
+//                List.of()
+//        );
         User saveduser = userRepository.save(user);
         return mapToReponse(saveduser);
     }
