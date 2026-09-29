@@ -20,7 +20,7 @@ public class ActivityController {
         return ResponseEntity.ok(activtiyService.trackActivity(request));
     }
     @GetMapping
-    private ResponseEntity<List<ActivityResponse>> getActivity(@RequestBody ActivityRequest request){
-        return ResponseEntity.ok(activtiyService.getAllActivities(request));
+    private ResponseEntity<List<ActivityResponse>> getActivity(@RequestHeader(value = "X-User-ID") String userId){
+        return ResponseEntity.ok(activtiyService.getUserActivites(userId));
     }
 }

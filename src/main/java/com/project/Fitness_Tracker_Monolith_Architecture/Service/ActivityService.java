@@ -9,7 +9,9 @@ import com.project.Fitness_Tracker_Monolith_Architecture.Repository.UserReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,9 +49,10 @@ public class ActivityService {
         response.setUpdatedAt(savedActivity.getUpdatedAt());
         return response;
     }
-
-
-    public List<ActivityResponse> getAllActivities(ActivityRequest request) {
-        return activityRepository.findAll(request);
+    public List<ActivityResponse> getUserActivites(String userId) {
+        List<Activity> activityList = activityRepository.findByUserId(userId);
+        //1)Activity->ActivityResponse
+        //2)Collect in list and return
+        return activityList.stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 }

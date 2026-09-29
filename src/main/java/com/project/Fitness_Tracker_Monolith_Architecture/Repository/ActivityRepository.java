@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity,String> {
-    List<ActivityResponse> findAll(ActivityRequest request);
+    List<Activity> findByUserId(String userId);
 }
