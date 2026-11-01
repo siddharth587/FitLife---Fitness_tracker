@@ -1,5 +1,6 @@
 package com.project.Fitness_Tracker_Monolith_Architecture.Dtos;
 
+import com.project.Fitness_Tracker_Monolith_Architecture.Entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,4 +13,5 @@ public class RegisterRequest {
     private String password;
     private String firstName;
     private String lastName;
+    private UserRole role;
 }
