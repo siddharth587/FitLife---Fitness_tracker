@@ -1,11 +1,13 @@
 package com.project.Fitness_Tracker_Monolith_Architecture.Service;
 
+import com.project.Fitness_Tracker_Monolith_Architecture.Dtos.LoginRequest;
 import com.project.Fitness_Tracker_Monolith_Architecture.Dtos.RegisterRequest;
 import com.project.Fitness_Tracker_Monolith_Architecture.Dtos.UserResponse;
 import com.project.Fitness_Tracker_Monolith_Architecture.Entity.User;
 import com.project.Fitness_Tracker_Monolith_Architecture.Entity.UserRole;
 import com.project.Fitness_Tracker_Monolith_Architecture.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +65,16 @@ public class UserService {
         response.setCreatedAt(saveduser.getCreatedAt());
         response.setUpdatedAt(saveduser.getUpdatedAt());
         return response;
+    }
+
+    public User authenticate(LoginRequest loginRequest) {
+        User user = userRepository.findByEmail(loginRequest.getEmail());
+        if (user == null) {
+            throw new RuntimeException("Invalid Credentials");
+        }
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid Credentials");
+        }
+        return user;
     }
 }
